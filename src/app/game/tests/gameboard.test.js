@@ -62,7 +62,7 @@ describe("tests of placeing ships in occupied squares", () => {
     
     test("cannot place a ship starting in the path of another one", () => {
         //(ship_name/length,position(y,x), direction)
-        expect(gameBoard2.placeShip("d",5,[5,0],"horizontal")).toBe("ivalid")
+        expect(gameBoard2.placeShip("d",5,[5,0],"horizontal")).toBe("invalid")
     })
 })
 

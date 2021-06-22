@@ -33,13 +33,6 @@ const Gameboard = () => {
         }
     }
 
-    const get_shipPath = ([y_pos, x_pos], length, direction) => {
-        //todo
-        let ship_path = []
-
-        return ship_path
-    }
-
     //public functions
 
     const getBoard = () => {
@@ -60,13 +53,26 @@ const Gameboard = () => {
         }
 
         //1.5 check if the new ship path colides with another ship
-        //todo:
+        if(direction === "horizontal"){
+            for(let x=x_pos; x<x_pos+length; x++){
+                if (board[y_pos][x] !== "_"){
+                    return "invalid"
+                }
+            }
+        }else if(direction === "vertical"){
+            for(let y=y_pos; y<y_pos+length; y++){
+                if(board[y][x_pos] !== "_"){
+                    return "invalid"
+                }
+            }
+        }
 
         //2.add ship to ship's database
         let ship_object = new Ship(length)
         ships[ship_name] = ship_object
 
         //3.add ship to board
+        //todo:implement ship path logic here!
         if(direction === "horizontal"){
             for(let x=x_pos; x<x_pos+length; x++){
                 board[y_pos][x] = ship_name
