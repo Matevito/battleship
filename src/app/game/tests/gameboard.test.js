@@ -77,7 +77,7 @@ test("invalid moves do not modify the board", () => {
 
 //test of receiving attacks
 
-test("diplat and handles failed attacks", () => {
+test("diplay and handles failed attacks", () => {
     gameBoard.receiveAttack([9,9])
 
     expect(gameBoard.getBoard())
@@ -110,10 +110,28 @@ test("display success attacks", () => {
     ["_","_","_","_","_","_","_","_","_","1",]])
 })
 
-test.todo("handles success attacks")
+test("handles success attacks in ship's data", () => {
+    let shipsData = gameBoard.getShips()
+    
+    //if the ship receive an attack is life would be 4
+    expect(shipsData["a"].status()).toBe(4)
+})
 
-test.todo("board shows failed attacks")
+test("board can report if not all ships sunk", () => {
+    gameBoard.receiveAttack([0,1])
+    gameBoard.receiveAttack([0,2])
+    gameBoard.receiveAttack([0,3])
+    gameBoard.receiveAttack([0,4])
 
-test.todo("boards can report if all ships sunk")
+    expect(gameBoard.allShipsSunk()).toBe(false)
+})
 
-test.todo("board can report if not all ships sunk")
+test("boards can report if all ships sunk", () => {
+    gameBoard.receiveAttack([3,3])
+    gameBoard.receiveAttack([3,4])
+    gameBoard.receiveAttack([3,5])
+    gameBoard.receiveAttack([4,0])
+    gameBoard.receiveAttack([5,0])
+
+    expect(gameBoard.allShipsSunk()).toBe(true)
+})

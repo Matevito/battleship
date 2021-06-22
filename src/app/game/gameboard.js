@@ -39,6 +39,10 @@ const Gameboard = () => {
         return board
     };
 
+    const getShips = () => {
+        return ships
+    }
+
     const placeShip = (ship_name, length, [y_pos, x_pos], direction) => {
         //outputs if the ship placing is valid or invalid
 
@@ -49,10 +53,8 @@ const Gameboard = () => {
         }
 
         //2.add ship to ship's database
-        //todo: add ships position path?
         let ship_object = new Ship(length)
         ships[ship_name] = ship_object
-        console.log(ships)
 
         //3.add ship to board
         if(direction === "horizontal"){
@@ -69,7 +71,36 @@ const Gameboard = () => {
         return "valid"
     };
 
-    return {getBoard, placeShip}
+    const allShipsSunk = () => {
+        for(let ship_name in ships){
+            let ship = ships[ship_name]
+            if(ship.isSunk() === false){
+                return false
+            }
+        }
+        return true
+    }
+
+    const receiveAttack = ([y_pos, x_pos]) => {
+        //todo: cannot receive attacks in already shooted positions
+
+        let position_status = board[y_pos][x_pos]
+
+        if (position_status === "_"){
+            board[y_pos][x_pos] = "1"
+            return
+        }
+
+        let ship_name = position_status.toLowerCase()
+        //shoot the ship in the database
+        let ship_object = ships[ship_name]
+        ship_object.hit()
+
+        //display the shoot in the board
+        board[y_pos][x_pos] = ship_name.toUpperCase()
+    }
+
+    return {getBoard, getShips, placeShip, allShipsSunk, receiveAttack}
 }
 
 export default Gameboard
