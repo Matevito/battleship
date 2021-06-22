@@ -2,12 +2,32 @@ import GameBoard from "./gameboard"
 
 const randomAI = (aiName) => {
     const name = aiName
-    const shots = []
     const board = new GameBoard;
+    const shots = []
+    const rivalBoard = [["_","_","_","_","_","_","_","_","_","_"],
+                        ["_","_","_","_","_","_","_","_","_","_"],
+                        ["_","_","_","_","_","_","_","_","_","_"],
+                        ["_","_","_","_","_","_","_","_","_","_"],
+                        ["_","_","_","_","_","_","_","_","_","_"],
+                        ["_","_","_","_","_","_","_","_","_","_"],
+                        ["_","_","_","_","_","_","_","_","_","_"],
+                        ["_","_","_","_","_","_","_","_","_","_"],
+                        ["_","_","_","_","_","_","_","_","_","_"],
+                        ["_","_","_","_","_","_","_","_","_","_"]]
 
     const random = (min=0, max=9) => {
         let num = Math.random() * (max-min)+min;
         return Math.round(num)
+    }
+
+    const randomDirection = (min=0, max=1) => {
+        let num = Math.random() * (max-min)+min
+        num = Math.round(num)
+        if(num === 0){
+            return "horizontal"
+        }else{
+            return "vertical"
+        }
     }
 
     const get_randomCell = () => {
@@ -23,19 +43,53 @@ const randomAI = (aiName) => {
             shot = get_randomCell()
         }
         shots.push(shot)
+        return "valid"
     }
 
-    //const
-    const randomPlacement = (board) => {
+    const randomPlacement = (ship_name, ship_length) => {
+        let randomPos = get_randomCell()
+        let randomDir = randomDirection()
+        let shipsValidity = board.placeShip(ship_name, ship_length, randomPos, randomDir)
+        while(shipsValidity === "invalid"){
+            //call again another random position
+            randomPos = get_randomCell()
+            randomDir = randomDirection()
+            shipsValidity = board.placeShip(ship_name, ship_length, randomPos, randomDir)
+        }
+    }
+
+    const shotResponse = ([y_pos, x_pos], response) => {
+        if (response === true){
+            //displays a shot
+            rivalBoard[y_pos][x_pos] = "*"
+        }else{
+            //displays a miss
+            rivalBoard[y_pos][x_pos] = "1"
+        }
+    }
+
+    const send_shotResponse = ([y_pos, x_pos]) => {
         //todo
-        return []
     }
 
     const getName = () => {
         return name
     }
 
-    return {randomShot, randomPlacement, getName}
+    const get_rivalBoard = () => {
+        return rivalBoard
+    }
+    const get_AIboard = () => {
+        return board
+    }
+
+    return {randomShot,
+        randomPlacement,
+        getName,
+        shotResponse,  
+        send_shotResponse,
+        get_rivalBoard,
+        get_AIboard}
     
 }
 
