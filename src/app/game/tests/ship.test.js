@@ -21,7 +21,6 @@ test("a ship can sunk", () => {
     expect(testShip_1.isSunk()).toBe(true)
 })
 
-//
+/*
 test.todo("a ship that is sunk cannot receive another hit")
-
-test.todo("ship is created in a valid position")
+*/
