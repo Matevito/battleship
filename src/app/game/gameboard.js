@@ -11,7 +11,7 @@ const Gameboard = () => {
                     ["_","_","_","_","_","_","_","_","_","_",],
                     ["_","_","_","_","_","_","_","_","_","_",],
                     ["_","_","_","_","_","_","_","_","_","_",]];
-    let ships = {}; //an array of dictionaries: shipname:, ship, position:beg-end
+    let ships = {}; 
 
     //private functions
     const validPosition = ([y_pos, x_pos]) => {
@@ -33,6 +33,13 @@ const Gameboard = () => {
         }
     }
 
+    const get_shipPath = ([y_pos, x_pos], length, direction) => {
+        //todo
+        let ship_path = []
+
+        return ship_path
+    }
+
     //public functions
 
     const getBoard = () => {
@@ -51,6 +58,9 @@ const Gameboard = () => {
         if(validPosition(lastExpPosition) === false){
             return "invalid"
         }
+
+        //1.5 check if the new ship path colides with another ship
+        //todo:
 
         //2.add ship to ship's database
         let ship_object = new Ship(length)
@@ -82,8 +92,6 @@ const Gameboard = () => {
     }
 
     const receiveAttack = ([y_pos, x_pos]) => {
-        //todo: cannot receive attacks in already shooted positions
-
         let position_status = board[y_pos][x_pos]
 
         if (position_status === "_"){

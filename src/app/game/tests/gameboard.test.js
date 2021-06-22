@@ -50,7 +50,22 @@ test("can place vertical ships", () => {
             ["_","_","_","_","_","_","_","_","_","_",]])
 })
 
-//tests to solve
+describe("tests of placeing ships in occupied squares", () => {
+    let gameBoard2 = new Gameboard()
+    gameBoard2.placeShip("c",2,[4,0],"vertical")
+    gameBoard2.placeShip("b",3,[3,3],"horizontal")
+
+    test("cannot place a ship in the path of another one", () => {
+        //(ship_name/length,position(y,x), direction)
+        expect(gameBoard2.placeShip("d",3,[2,3],"vertical")).toBe("invalid")
+    })
+    
+    test("cannot place a ship starting in the path of another one", () => {
+        //(ship_name/length,position(y,x), direction)
+        expect(gameBoard2.placeShip("d",5,[5,0],"horizontal")).toBe("ivalid")
+    })
+})
+
 test("a ship cannot be placed in an invalid position", () => {
     //(ship_name/length,position(y,x), direction)
     expect(gameBoard.placeShip("d",4,[10,10],"vertical")).toBe("invalid")
