@@ -2,7 +2,7 @@ import Gameboard from "../gameboard"
 
 let gameBoard = new Gameboard
 
-test.only("place ships at specific and valid coordinates", () => {
+test("place ships at specific and valid coordinates", () => {
     //(ship_name/length,position(y,x), direction)
     gameBoard.placeShip("a",5,[0,0],"horizontal")
     expect(gameBoard.getBoard())
@@ -50,6 +50,7 @@ test("can place vertical ships", () => {
             ["_","_","_","_","_","_","_","_","_","_",]])
 })
 
+//tests to solve
 test("a ship cannot be placed in an invalid position", () => {
     //(ship_name/length,position(y,x), direction)
     expect(gameBoard.placeShip("d",4,[10,10],"vertical")).toBe("invalid")
@@ -76,14 +77,14 @@ test("invalid moves do not modify the board", () => {
 
 //test of receiving attacks
 
-test.todo("received attack fails")
+test.todo("handles failed attacks")
 
-test.todo("received attack succed")
+test.todo("handles success attacks")
 
-test.todo("board tracks missed attacks")
+test.todo("board tracks failed attacks")
 
 test.todo("board shows failed attacks")
 
-test.todo("boards can report if all ships  sunk")
+test.todo("boards can report if all ships sunk")
 
-test.todo("board can report if not all ships sunk") 
+test.todo("board can report if not all ships sunk")
