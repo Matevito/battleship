@@ -6,7 +6,7 @@ test.only("place ships at specific and valid coordinates", () => {
     //(ship_name/length,position(y,x), direction)
     gameBoard.placeShip("a",5,[0,0],"horizontal")
     expect(gameBoard.getBoard())
-    .toBe([ ["a","a","a","a","a","_","_","_","_","_"],
+    .toStrictEqual([ ["a","a","a","a","a","_","_","_","_","_"],
             ["_","_","_","_","_","_","_","_","_","_",],
             ["_","_","_","_","_","_","_","_","_","_",],
             ["_","_","_","_","_","_","_","_","_","_",],
