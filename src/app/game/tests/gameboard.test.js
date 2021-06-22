@@ -77,11 +77,40 @@ test("invalid moves do not modify the board", () => {
 
 //test of receiving attacks
 
-test.todo("handles failed attacks")
+test("diplat and handles failed attacks", () => {
+    gameBoard.receiveAttack([9,9])
+
+    expect(gameBoard.getBoard())
+    .toStrictEqual([ ["a","a","a","a","a","_","_","_","_","_"],
+    ["_","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","b","b","b","_","_","_","_",],
+    ["c","_","_","_","_","_","_","_","_","_",],
+    ["c","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","_","_","_","_","_","_","1",]])
+})
+
+test("display success attacks", () => {
+    gameBoard.receiveAttack([0,0])
+
+    //attacks on ship are upper case letters of the corresponding ship name
+    expect(gameBoard.getBoard())
+    .toStrictEqual([ ["A","a","a","a","a","_","_","_","_","_"],
+    ["_","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","b","b","b","_","_","_","_",],
+    ["c","_","_","_","_","_","_","_","_","_",],
+    ["c","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","_","_","_","_","_","_","_",],
+    ["_","_","_","_","_","_","_","_","_","1",]])
+})
 
 test.todo("handles success attacks")
-
-test.todo("board tracks failed attacks")
 
 test.todo("board shows failed attacks")
 

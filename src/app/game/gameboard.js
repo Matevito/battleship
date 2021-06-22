@@ -11,8 +11,9 @@ const Gameboard = () => {
                     ["_","_","_","_","_","_","_","_","_","_",],
                     ["_","_","_","_","_","_","_","_","_","_",],
                     ["_","_","_","_","_","_","_","_","_","_",]];
-    let ships = []; //an array of dictionaries: shipname:, ship, position:beg-end
+    let ships = {}; //an array of dictionaries: shipname:, ship, position:beg-end
 
+    //private functions
     const validPosition = ([y_pos, x_pos]) => {
         if(y_pos > 9 || y_pos < 0){
             return false
@@ -32,6 +33,8 @@ const Gameboard = () => {
         }
     }
 
+    //public functions
+
     const getBoard = () => {
         return board
     };
@@ -48,8 +51,8 @@ const Gameboard = () => {
         //2.add ship to ship's database
         //todo: add ships position path?
         let ship_object = new Ship(length)
-        let ship = {name:ship_name, ship: ship_object}
-        ships.push(ship)
+        ships[ship_name] = ship_object
+        console.log(ships)
 
         //3.add ship to board
         if(direction === "horizontal"){
