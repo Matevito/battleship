@@ -22,7 +22,7 @@ test("can place horizontal ships", () => {
     //(ship_name/length,position(y,x), direction)
     gameBoard.placeShip("b",3,[3,3],"horizontal")
     expect(gameBoard.getBoard())
-    .toBe([ ["a","a","a","a","a","_","_","_","_","_"],
+    .toStrictEqual([ ["a","a","a","a","a","_","_","_","_","_"],
             ["_","_","_","_","_","_","_","_","_","_",],
             ["_","_","_","_","_","_","_","_","_","_",],
             ["_","_","_","b","b","b","_","_","_","_",],
@@ -38,7 +38,7 @@ test("can place vertical ships", () => {
     //(ship_name/length,position(y,x), direction)
     gameBoard.placeShip("c",2,[4,0],"vertical")
     expect(gameBoard.getBoard())
-    .toBe([ ["a","a","a","a","a","_","_","_","_","_"],
+    .toStrictEqual([ ["a","a","a","a","a","_","_","_","_","_"],
             ["_","_","_","_","_","_","_","_","_","_",],
             ["_","_","_","_","_","_","_","_","_","_",],
             ["_","_","_","b","b","b","_","_","_","_",],
@@ -62,7 +62,7 @@ test("cannot place a ship that start in the board and goes beyond it", () => {
 
 test("invalid moves do not modify the board", () => {
     expect(gameBoard.getBoard())
-    .toBe([ ["a","a","a","a","a","_","_","_","_","_"],
+    .toStrictEqual([ ["a","a","a","a","a","_","_","_","_","_"],
             ["_","_","_","_","_","_","_","_","_","_",],
             ["_","_","_","_","_","_","_","_","_","_",],
             ["_","_","_","b","b","b","_","_","_","_",],
