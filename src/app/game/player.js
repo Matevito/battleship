@@ -36,7 +36,15 @@ const Player = (playerName) => {
     }
 
     const send_shotResponse = ([y_pos, x_pos]) => {
-        //todo
+        board.receiveAttack([y_pos, x_pos])
+        let shootedCell = board.getBoard()[y_pos][x_pos]
+        if(shootedCell === "1"){
+            //a miss
+            return "1"
+        }else{
+            //a hit
+            return "*"
+        }
     }
 
     const get_board = () => {
