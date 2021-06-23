@@ -58,7 +58,7 @@ const randomAI = (aiName) => {
         }
     }
 
-    const shotResponse = ([y_pos, x_pos], response) => {
+    const record_shotResponse = ([y_pos, x_pos], response) => {
         if (response === true){
             //displays a shot
             rivalBoard[y_pos][x_pos] = "*"
@@ -69,7 +69,15 @@ const randomAI = (aiName) => {
     }
 
     const send_shotResponse = ([y_pos, x_pos]) => {
-        //todo
+        let shottedCell = board.getBoard()[y_pos][x_pos]
+
+        if(shottedCell !== "_"){
+            //a hit
+            return "*"
+        }else{
+            //a miss
+            return "1"
+        }
     }
 
     const getName = () => {
@@ -86,7 +94,7 @@ const randomAI = (aiName) => {
     return {randomShot,
         randomPlacement,
         getName,
-        shotResponse,  
+        record_shotResponse,  
         send_shotResponse,
         get_rivalBoard,
         get_AIboard}
