@@ -24,6 +24,14 @@ const Player = (playerName) => {
         }
     }
 
+    const record_shotResponse = () => {
+        //todo
+    }
+
+    const send_shotResponse = () => {
+        //todo
+    }
+
     const get_board = () => {
         return board
     }

@@ -69,15 +69,15 @@ const randomAI = (aiName) => {
     }
 
     const send_shotResponse = ([y_pos, x_pos]) => {
+        board.receiveAttack([y_pos, x_pos])
         let shottedCell = board.getBoard()[y_pos][x_pos]
-
-        if(shottedCell !== "_"){
-            //a hit
-            return "*"
-        }else{
-            //a miss
+        //todo: record the hit
+        if(shottedCell === "1"){
             return "1"
+        }else{
+            return "*"
         }
+        
     }
 
     const getName = () => {

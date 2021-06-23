@@ -99,7 +99,6 @@ const Gameboard = () => {
 
     const receiveAttack = ([y_pos, x_pos]) => {
         let position_status = board[y_pos][x_pos]
-
         if (position_status === "_"){
             board[y_pos][x_pos] = "1"
             return

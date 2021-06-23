@@ -58,7 +58,7 @@ test("send_shootResponse handles if an attemp fails", () => {
     //the board is clean so an attemp cannot hit
     let ai_test = new randomAI("ai")
     //"1 represent in the board array a miss"
-    expect(ai_test.send_shotResponse([0,0])).toBe("1")
+    expect(ai_test.send_shotResponse([4,4])).toBe("1")
 })
 
 test.todo("send_shootResponse handles if an attemp hit's a target")
