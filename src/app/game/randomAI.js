@@ -2,7 +2,7 @@ import GameBoard from "./gameboard"
 
 const randomAI = (aiName) => {
     const name = aiName
-    const board = new GameBoard;
+    const board = new GameBoard();
     const shots = []
     const rivalBoard = [["_","_","_","_","_","_","_","_","_","_"],
                         ["_","_","_","_","_","_","_","_","_","_"],

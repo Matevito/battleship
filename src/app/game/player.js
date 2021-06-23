@@ -2,7 +2,8 @@ import GameBoard from "./gameboard"
 
 const Player = (playerName) => {
     const name = playerName
-    const board = new GameBoard
+    const board = new GameBoard()
+    //this is needed in player?
     const shots = []
     const rivalBoard = [["_","_","_","_","_","_","_","_","_","_"],
                         ["_","_","_","_","_","_","_","_","_","_"],
@@ -24,11 +25,17 @@ const Player = (playerName) => {
         }
     }
 
-    const record_shotResponse = () => {
-        //todo
+    const record_shotResponse = ([y_pos, x_pos], response) => {
+        //this records the shot in the shots array//ai do not do this
+        shots.push([y_pos, x_pos])
+        if(response === true){
+            rivalBoard[y_pos][x_pos] = "*"
+        }else{
+            rivalBoard[y_pos][x_pos] = "1"
+        }
     }
 
-    const send_shotResponse = () => {
+    const send_shotResponse = ([y_pos, x_pos]) => {
         //todo
     }
 
@@ -39,9 +46,16 @@ const Player = (playerName) => {
     const get_name = () => {
         return name
     }
+
+    const get_rivalBoard = () => {
+        return rivalBoard
+    }
     return {shipPlacement,
             get_board,
-            get_name}
+            get_name,
+            get_rivalBoard,
+            record_shotResponse,
+            send_shotResponse}
 }
 
 export default Player
